@@ -67,13 +67,14 @@ td {
     <h3 class="text-left" style="font-size: 13px;">Karang Mekar, Kec. Banjarmasin Tim., Kota Banjarmasin, Kalimantan Selatan 70236 - (0511) 3255551</h3>
     <br>
     <h3 class="text-left"></h3><div style="width: 100%;height: 2px;background-color: #3d3d3d;-webkit-print-color-adjust: exact;"></div>
-    <h4 class="text-center">Laporan Pemasangan  <?= date("M", strtotime($_GET['bulan']));  ?> <?= date("y", strtotime($_GET['bulan']));  ?></h4>
+    <h4 class="text-center">Laporan Pemasangan Migrasi <?= date("M", strtotime($_GET['bulan']));  ?> <?= date("y", strtotime($_GET['bulan']));  ?></h4>
 <hr>
       <table class="table table-bordered nowrap"  id="example2">
           <thead>
             <tr>
               <th>No</th>
               <th>No PSB</th>
+              <th>Jenis PSB</th>
               <th>Nama Pelanggan</th>
               <th>Nama Teknisi</th>
               <th>Status</th>
@@ -93,7 +94,7 @@ td {
 
               } else {*/
 
-                  $datas = mysqli_query($koneksi, "select pemasangan.*, pendaftaran.no_psb, pendaftaran.tgl_psb, pelanggan.nama,pelanggan.alamat, karyawan.nama as nama_teknisi from pemasangan JOIN pendaftaran ON pendaftaran.id = pemasangan.pendaftaran_id JOIN pelanggan ON pelanggan.id = pendaftaran.pelanggan_id LEFT JOIN karyawan ON karyawan.id = pemasangan.teknisi_id WHERE pendaftaran.jenis_psb = 'MIGRASI' AND YEAR(pemasangan.tgl_rencana_pasang) = '$tah' AND MONTH(pemasangan.tgl_rencana_pasang) = '$bul' group by pemasangan.id") or die(mysqli_error($koneksi)); 
+                  $datas = mysqli_query($koneksi, "select pemasangan.*, pendaftaran.no_psb, pendaftaran.tgl_psb, pendaftaran.jenis_psb, pelanggan.nama,pelanggan.alamat, karyawan.nama as nama_teknisi from pemasangan JOIN pendaftaran ON pendaftaran.id = pemasangan.pendaftaran_id JOIN pelanggan ON pelanggan.id = pendaftaran.pelanggan_id LEFT JOIN karyawan ON karyawan.id = pemasangan.teknisi_id WHERE pendaftaran.jenis_psb = 'MIGRASI' AND pemasangan.status_pasang = 'SELESAI' AND YEAR(pemasangan.tgl_rencana_pasang) = '$tah' AND MONTH(pemasangan.tgl_rencana_pasang) = '$bul' group by pemasangan.id") or die(mysqli_error($koneksi)); 
              /* }*/
 
               $no = 1;//untuk pengurutan nomor
@@ -105,6 +106,7 @@ td {
           <tr>
             <td><?= $no; ?></td>
             <td><?= $row['no_psb']; ?></td>
+            <td><?= $row['jenis_psb']; ?></td>
             <td><?= $row['nama']; ?></td>
             <td><?= $row['nama_teknisi']; ?></td>
             <td><?= $row['status_pasang']; ?></td>

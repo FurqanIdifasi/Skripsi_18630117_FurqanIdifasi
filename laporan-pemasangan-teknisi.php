@@ -114,6 +114,7 @@ $id_teknisi = $_GET['teknisi'];
             <tr style="background:#ededed;">
               <th>No</th>
               <th>No PSB</th>
+              <th>Jenis PSB</th>
               <th>Nama Pelanggan</th>
               <th>Nama Teknisi</th>
               <th>Status</th>
@@ -133,7 +134,7 @@ $id_teknisi = $_GET['teknisi'];
 
               } else {*/
 
-                  $datas = mysqli_query($koneksi, "select pemasangan.*, pendaftaran.no_psb, pendaftaran.tgl_psb, pelanggan.nama,pelanggan.alamat, karyawan.nama as nama_teknisi from pemasangan JOIN pendaftaran ON pendaftaran.id = pemasangan.pendaftaran_id JOIN pelanggan ON pelanggan.id = pendaftaran.pelanggan_id LEFT JOIN karyawan ON karyawan.id = pemasangan.teknisi_id where pemasangan.teknisi_id = '$id_teknisi' group by pemasangan.id") or die(mysqli_error($koneksi)); 
+                  $datas = mysqli_query($koneksi, "select pemasangan.*, pendaftaran.no_psb, pendaftaran.tgl_psb, pendaftaran.jenis_psb, pelanggan.nama,pelanggan.alamat, karyawan.nama as nama_teknisi from pemasangan JOIN pendaftaran ON pendaftaran.id = pemasangan.pendaftaran_id JOIN pelanggan ON pelanggan.id = pendaftaran.pelanggan_id LEFT JOIN karyawan ON karyawan.id = pemasangan.teknisi_id where pemasangan.teknisi_id = '$id_teknisi' group by pemasangan.id") or die(mysqli_error($koneksi)); 
              /* }*/
 
               $no = 1;//untuk pengurutan nomor
@@ -145,6 +146,7 @@ $id_teknisi = $_GET['teknisi'];
           <tr>
             <td><?= $no; ?></td>
             <td><?= $row['no_psb']; ?></td>
+            <td><?= $row['jenis_psb']; ?></td>
             <td><?= $row['nama']; ?></td>
             <td><?= $row['nama_teknisi']; ?></td>
             <td><?= $row['status_pasang']; ?></td>

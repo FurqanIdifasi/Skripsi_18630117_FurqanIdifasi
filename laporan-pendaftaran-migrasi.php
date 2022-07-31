@@ -67,13 +67,14 @@ td {
     <h3 class="text-left" style="font-size: 13px;">Karang Mekar, Kec. Banjarmasin Tim., Kota Banjarmasin, Kalimantan Selatan 70236 - (0511) 3255551</h3>
     <br>
     <h3 class="text-left"></h3><div style="width: 100%;height: 2px;background-color: #3d3d3d;-webkit-print-color-adjust: exact;"></div>
-    <h4 class="text-center">Laporan Pendaftaran  <?= date("M", strtotime($_GET['bulan']));  ?> <?= date("y", strtotime($_GET['bulan']));  ?></h4>
+    <h4 class="text-center">Laporan Pendaftaran Migrasi <?= date("M", strtotime($_GET['bulan']));  ?> <?= date("y", strtotime($_GET['bulan']));  ?></h4>
 <hr>
         <table class="table table-bordered nowrap"  id="example2">
           <thead>
             <tr>
               <th>No</th>
               <th>No Pendaftaran</th>
+              <th>Jenis PSB</th>
               <th>Tanggal</th>
               <th>Nama Pelanggan</th>
               <th>Alamat</th>
@@ -93,7 +94,7 @@ td {
 
               } else {*/
 
-                  $datas = mysqli_query($koneksi, "select pendaftaran.*, pelanggan.nama,pelanggan.alamat, paket.nama as nama_paket from pendaftaran JOIN pelanggan ON pelanggan.id = pendaftaran.pelanggan_id join paket on paket.id = pendaftaran.paket_id   WHERE pendaftaran.jenis_psb = 'MIGRASI' YEAR(pendaftaran.tgl_psb) = '$tah' AND MONTH(pendaftaran.tgl_psb) = '$bul' group by pendaftaran.id") or die(mysqli_error($koneksi)); 
+                  $datas = mysqli_query($koneksi, "select pendaftaran.*, pelanggan.nama,pelanggan.alamat, paket.nama as nama_paket from pendaftaran JOIN pelanggan ON pelanggan.id = pendaftaran.pelanggan_id join paket on paket.id = pendaftaran.paket_id   WHERE pendaftaran.jenis_psb = 'MIGRASI' AND YEAR(pendaftaran.tgl_psb) = '$tah' AND MONTH(pendaftaran.tgl_psb) = '$bul' group by pendaftaran.id") or die(mysqli_error($koneksi)); 
               /*}
 */
               $no = 1;//untuk pengurutan nomor
@@ -105,6 +106,7 @@ td {
           <tr>
             <td><?= $no; ?></td>
             <td><?= $row['no_psb']; ?></td>
+            <td><?= $row['jenis_psb']; ?></td>
             <td><?= format_tanggal($row['tgl_psb']); ?></td>
             <td><?= $row['nama']; ?></td>
             <td><?= $row['alamat']; ?></td>

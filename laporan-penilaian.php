@@ -73,6 +73,7 @@ td {
           <thead>
             <tr>
               <th>No PSB</th>
+              <th>Jenis PSB</th>
               <th>Nama Pelanggan</th>
               <th>Nama Teknisi</th>
               <th>Status</th>
@@ -92,7 +93,7 @@ td {
 
               } else {*/
 
-                  $datas = mysqli_query($koneksi, "select pemasangan.*, pendaftaran.no_psb, pendaftaran.tgl_psb, pelanggan.nama,pelanggan.alamat, karyawan.nama as nama_teknisi from pemasangan JOIN pendaftaran ON pendaftaran.id = pemasangan.pendaftaran_id JOIN pelanggan ON pelanggan.id = pendaftaran.pelanggan_id LEFT JOIN karyawan ON karyawan.id = pemasangan.teknisi_id WHERE pemasangan.status_pasang = 'SELESAI' AND pemasangan.p1 != '' AND YEAR(pemasangan.tgl_rencana_pasang) = '$tah' AND MONTH(pemasangan.tgl_rencana_pasang) = '$bul' group by pemasangan.id") or die(mysqli_error($koneksi)); 
+                  $datas = mysqli_query($koneksi, "select pemasangan.*, pendaftaran.no_psb, pendaftaran.tgl_psb, pendaftaran.jenis_psb, pelanggan.nama,pelanggan.alamat, karyawan.nama as nama_teknisi from pemasangan JOIN pendaftaran ON pendaftaran.id = pemasangan.pendaftaran_id JOIN pelanggan ON pelanggan.id = pendaftaran.pelanggan_id LEFT JOIN karyawan ON karyawan.id = pemasangan.teknisi_id WHERE pemasangan.status_pasang = 'SELESAI' AND pemasangan.p1 != '' AND YEAR(pemasangan.tgl_rencana_pasang) = '$tah' AND MONTH(pemasangan.tgl_rencana_pasang) = '$bul' group by pemasangan.id") or die(mysqli_error($koneksi)); 
              /* }*/
 
               $no = 1;//untuk pengurutan nomor
@@ -103,6 +104,7 @@ td {
 
           <tr>
             <td><?= $row['no_psb']; ?></td>
+            <td><?= $row['jenis_psb']; ?></td>
             <td><?= $row['nama']; ?></td>
             <td><?= $row['nama_teknisi']; ?></td>
             <td><?= $row['status_pasang']; ?></td>

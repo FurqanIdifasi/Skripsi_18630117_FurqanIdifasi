@@ -54,7 +54,7 @@
 
               } else {*/
 
-                  $datas = mysqli_query($koneksi, "select pendaftaran.*, pelanggan.nama,pelanggan.alamat,pelanggan.status_rumah, paket.nama as nama_paket from pendaftaran JOIN pelanggan ON pelanggan.id = pendaftaran.pelanggan_id join paket on paket.id = pendaftaran.paket_id group by pendaftaran.id") or die(mysqli_error($koneksi)); 
+                  $datas = mysqli_query($koneksi, "select pendaftaran.*, pelanggan.nama,pelanggan.alamat,pelanggan.status_rumah, paket.nama as nama_paket from pendaftaran JOIN pelanggan ON pelanggan.id = pendaftaran.pelanggan_id join paket on paket.id = pendaftaran.paket_id group by pendaftaran.id desc") or die(mysqli_error($koneksi)); 
               /*}
 */
               $no = 1;//untuk pengurutan nomor

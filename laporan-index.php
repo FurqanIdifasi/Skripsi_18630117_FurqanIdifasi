@@ -105,7 +105,7 @@
             </tr>
             <tr>
               <th style="vertical-align: middle;">Laporan Pengajuan Migrasi</th>
-              <th><form method="get" action="laporan-pendaftaran.php" class="form-inline">
+              <th><form method="get" action="laporan-pendaftaran-migrasi.php" class="form-inline">
                     <input type="month" class="form-control form-control-sm" name="bulan" required >
                     <button type="submit" class="btn btn-secondary btn-sm" name="submit" value="cetak-absen">Cetak!</button>
                 </form></th>
@@ -113,7 +113,7 @@
 
             <tr>
               <th style="vertical-align: middle;">Laporan Pemasangan Migrasi</th>
-              <th><form method="get" action="laporan-pemasangan.php" class="form-inline">
+              <th><form method="get" action="laporan-migrasi.php" class="form-inline">
                     <input type="month" class="form-control form-control-sm" name="bulan" required >
                     <button type="submit" class="btn btn-secondary btn-sm" name="submit" value="cetak-absen">Cetak!</button>
                 </form></th>

@@ -150,7 +150,7 @@ require_once "assets/phpmailer/src/SMTP.php";
 
             $mail->Host = 'smtp.gmail.com';
             $mail->Username = $email_pengirim;
-            $mail->Password = 'gphqyzknqlamlctt';
+            $mail->Password = 'jcksixvhzaoaihrt';
             $mail->Port = '465';
             $mail->SMTPAuth = true;            
             $mail->SMTPSecure = 'ssl';
